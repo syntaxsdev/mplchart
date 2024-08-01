@@ -440,18 +440,18 @@ class Chart:
             raise RuntimeError("axes not initialized!")
 
         ax = self.main_axes()
-
         for point in points:
             date = point.datetime
             price = point.price
             arrow = point.arrow
             color = point.get('color', 'green')  # Default to blue if no color specified
             label = point.get('label', '')
+            legend_label = point.get('legend_label', None)
             label_offset = point.get('label_offset', 1)
             arrowprops = point.get('arrowprops', dict(facecolor=color, arrowstyle='->'))
 
             xv = self.map_date(date)
-            ax.scatter(xv, price, color=color, label=f'{label or "Point"} at {price}')
+            ax.scatter(xv, price, color=color, label=f'{legend_label or "Point"} at {price:.2f}')
             
             if label:
                 ax.annotate(
