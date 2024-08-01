@@ -20,7 +20,7 @@ class ChartPoint(BaseDataClass):
     datetime: str = None
     label: str = None
     label_offset: int = 1
-    legend_label = None
+    legend_label: str = None
     color: str = "green"
     arrow: bool = False
     arrowprops: dict = None
