@@ -400,12 +400,16 @@ class Chart:
 
     def add_legends(self):
         """adds legends to all axes"""
+        if hasattr(self, 'legend_on'):
+            if not getattr(self, 'legend_on'):
+                return
+
         for ax in self.figure.axes:
             handles, labels = ax.get_legend_handles_labels()
             if handles:
                 ax.legend(loc="upper left")
 
-    def plot(self, prices, indicators, *, target=None, rebase=False):
+    def plot(self, prices, indicators, *, target=None, rebase=False, legend_on=True):
         """plots a list of indicators
 
         Parameters
@@ -416,6 +420,7 @@ class Chart:
             list of indciators to plot
 
         """
+        self.legend_on = legend_on
 
         if target is not None:
             self.force_target(target)
@@ -427,7 +432,7 @@ class Chart:
 
         for indicator in indicators:
             self.plot_indicator(prices, indicator)
-
+        
         self.add_legends()
 
     def plot_points(self, points):
