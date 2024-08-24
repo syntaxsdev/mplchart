@@ -405,7 +405,7 @@ class Chart:
             if handles:
                 ax.legend(loc="upper left")
 
-    def plot(self, prices, indicators, *, target=None, rebase=False):
+    def plot(self, prices, indicators, *, target=None, rebase=False, legend_on=True):
         """plots a list of indicators
 
         Parameters
@@ -427,8 +427,9 @@ class Chart:
 
         for indicator in indicators:
             self.plot_indicator(prices, indicator)
-
-        self.add_legends()
+        
+        if legend_on:
+            self.add_legends()
 
     def plot_points(self, points):
         """Plots individual points on the chart with optional labels and arrows.
